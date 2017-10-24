@@ -11,14 +11,19 @@
 		{{#files}}{{name}}<br>{{/files}}
         
         
-        <br><br><br>
+        <br><br>
         <h3>Download File:</h3>
-        <select class="selectpicker">
-            {{#files}}
-            <option>{{name}}</option>
-            {{/files}}
-        </select>
-
-
+		 {{#files}}
+		 
+		 <select class="selectpicker">
+			 <option>{{name}}</option>
+		 </select>
+		<form action="download/{{name}}" method="post">
+			<input name="fileName" type="submit" value="Download file now." type="text" >
+				</form>
+		
+		 <br><br>
+		
+	{{/files}}
 	</body>
 </html>

@@ -39,8 +39,12 @@ func mainRoutes() -> [[String: Any]] {
     
     // POST Handler for home page
     routes.append(["method":"post", "uri":"/upload", "handler":FileController.uploadFile])
-    
-    
+	
+	//Download File
+	
+	
+	// POST Handler for download
+	routes.append(["method":"post", "uri":"/download/{fileName}", "handler":FileController.downloadFile])
     
 
 

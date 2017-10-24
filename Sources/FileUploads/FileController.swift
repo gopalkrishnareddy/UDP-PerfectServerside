@@ -65,6 +65,41 @@ class FileController {
             response.completed()
         }
     }
+	
+	
+	
+	static func downloadFile(data: [String:Any]) throws -> RequestHandler {
+		return {
+			
+			request, response in
+			
+			guard let fileName = request.urlVariables["fileName"] else {
+					response.completed(status: .badRequest)
+					print("Unable to download file, Bad request")
+					return
+			}
+
+			print("Downloading file \(fileName)")
+			
+			do{
+				
+				
+				let thisFile = File("./webroot/uploads/\(fileName)")
+				print(thisFile.path)
+				let contents = try thisFile.readString()
+			
+				response.setBody(string: "Downloading \(contents)...")
+					.setHeader(.contentType, value: "Content-Disposition: attachment; filename=\"\(fileName)\"")
+					.completed()
+				
+			}catch{
+				print("Error Dwonloading file ")
+				
+			}
+			
+		
+		}
+	}
     
     
     
