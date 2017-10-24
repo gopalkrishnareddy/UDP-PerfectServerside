@@ -9,5 +9,16 @@
 
 		<h3>Files:</h3>
 		{{#files}}{{name}}<br>{{/files}}
+        
+        
+        <br><br><br>
+        <h3>Download File:</h3>
+        <select class="selectpicker">
+            {{#files}}
+            <option>{{name}}</option>
+            {{/files}}
+        </select>
+
+
 	</body>
 </html>
