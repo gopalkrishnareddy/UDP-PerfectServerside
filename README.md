@@ -1,4 +1,4 @@
-# Perfect File Uploads Example
+# Upload, Download & Parseing Using Perfect Server Side Swift
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
@@ -39,7 +39,6 @@
     </a>
 </p>
 
-## Perfect File Uploads Example Project
 
 This repository holds an example of File Uplaods functionality and is a companion example to [https://medium.com/@iamjono/manage-file-uploads-with-server-side-swift-d6f195f77213](https://medium.com/@iamjono/manage-file-uploads-with-server-side-swift-d6f195f77213)
 
