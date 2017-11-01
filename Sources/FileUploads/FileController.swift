@@ -89,7 +89,8 @@ class FileController {
 				let contents = try thisFile.readString()
 			
 				response.setBody(string: "Downloading \(contents)...")
-					.setHeader(.contentType, value: "Content-Disposition: attachment; filename=\"\(fileName)\"")
+					.setHeader(.contentDisposition, value: "attachment; filename=\"\(fileName)\"")
+          .setHeader(.contentType, value: "text/plain")
 					.completed()
 				
 			}catch{
