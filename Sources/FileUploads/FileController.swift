@@ -13,7 +13,8 @@ import PerfectHTTP
 import StORM
 import PerfectLib
 
-
+//Will be executed in the background in a Synchronous execution
+let queue = DispatchQueue(label: "com.yoelev.simpleSyncQueues")
 
 class FileController {
     
@@ -37,6 +38,18 @@ class FileController {
                     let thisFile = File(upload.tmpFileName)
                     do {
                         let _ = try thisFile.moveTo(path: "./webroot/uploads/\(upload.fileName)", overWrite: true)
+						
+						queue.sync {
+							
+							   print("##### Parsing csv in a Synchronous Execution in the background ##### ")
+							
+							// readFile(filename: f)
+							if let csvFile =  readCSVFile(name: upload.fileName) {
+								parseCSVToClient(csv: csvFile)
+							}
+							
+						}
+						
                     } catch {
                         print(error)
                     }
@@ -48,11 +61,7 @@ class FileController {
             do{
                 try d.forEachEntry(closure: { f in
                     
-                   // readFile(filename: f)
-                    if let csvFile =  readCSVFile(name: f) {
-                         parseCSVToClient(csv: csvFile)
-                    }
-                   
+					
                     
                     context["files"]?.append(["name":f])
                 })
@@ -147,7 +156,6 @@ class FileController {
             for field in array {
                 
                 let  arr = field.components(separatedBy: ",")
-                
                     print(arr)
                 }
                 

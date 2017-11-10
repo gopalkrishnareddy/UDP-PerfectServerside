@@ -46,10 +46,7 @@ class Handlers {
 					}
 				}
 			}
-            
-       
-            
-            
+
 
 			// Inspect the uploads directory contents
 			let d = Dir("./webroot/uploads")
