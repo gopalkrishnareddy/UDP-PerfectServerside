@@ -1,4 +1,4 @@
-# Upload Download & Parseing Using Perfect Server Side Swift
+# Upload Download & Parsing Using Perfect Server Side Swift
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
