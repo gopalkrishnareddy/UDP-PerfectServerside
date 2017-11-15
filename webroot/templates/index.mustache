@@ -1,29 +1,83 @@
-<html>
-	<title>File uploads</title>
-	<body>
-		<h2>File uploads</h2>
-		<form method="POST" enctype="multipart/form-data" action="">
-			File to upload: <input type="file" name="fileup"><br>
-			<input type="submit" value="Upload files now.">
-		</form>
 
-		<h3>Files:</h3>
-		{{#files}}{{name}}<br>{{/files}}
+
+
+<script>
+    $(function() {
+      var current_progress = 0;
+      var interval = setInterval(function() {
+            current_progress += 10;
+                                 $("#dynamic")
+                                 .css("width", current_progress + "%")
+                                 .attr("aria-valuenow", current_progress)
+                                 .text(current_progress + "% Complete");
+                                 if (current_progress >= 100)
+                                 clearInterval(interval);
+                                 }, 1000);
+      });
+      
+      
+      
+    </script>
+
+
+
+
+<html>
+    
+    <head>
+        <style>
+            
+            progress {
+                margin: 10px;
+                width: 700px;
+            }
+        
+            </style>
+</head>
+    
+    <title>File uploads</title>
+    <body>
+        <h2>File uploads</h2>
+        <form method="POST" enctype="multipart/form-data" action="">
+            File to upload: <input type="file" name="fileup"><br>
+                <input type="submit" value="Upload files now.">
+                    </form>
+        
+        <h3>Files:</h3>
+        {{#files}}{{name}}<br>{{/files}}
         
         
         <br><br>
         <h3>Download File:</h3>
-		 {{#files}}
-		 
-		 <select class="selectpicker">
-			 <option>{{name}}</option>
-		 </select>
-		<form action="download/{{name}}" method="post">
-			<input name="fileName" type="submit" value="Download file now." type="text" >
-				</form>
-		
-		 <br><br>
-		
-	{{/files}}
-	</body>
+        {{#files}}
+        
+        <select class="selectpicker">
+            <option>{{name}}</option>
+        </select>
+        <form action="download/{{name}}" method="post">
+            <input name="fileName" type="submit" value="Download file now." type="text" >
+                </form>
+        
+        <br><br>
+        
+        {{/files}}
+        
+        
+        
+        <h3>Dynamic Progress Bar</h3>
+        <p>Running progress bar from 0% to 100% in 10 seconds</p>
+        <div class="progress">
+            <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <span id="current-progress"></span>
+            </div>
+        </div>
+        
+        
+        <div class="progress">
+            <div class="progress-bar" style="width: 0%"></div>
+        </div>
+        
+        
+        
+    </body>
 </html>
