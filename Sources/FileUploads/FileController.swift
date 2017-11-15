@@ -14,7 +14,7 @@ import StORM
 import PerfectLib
 
 //Will be executed in the background in a Synchronous execution
-let queue = DispatchQueue(label: "com.yoelev.simpleSyncQueues")
+//let queue = DispatchQueue(label: "com.yoelev.simpleSyncQueues")
 
 class FileController {
     
@@ -39,16 +39,21 @@ class FileController {
                     do {
                         let _ = try thisFile.moveTo(path: "./webroot/uploads/\(upload.fileName)", overWrite: true)
 						
-						queue.sync {
+						//queue.sync {
+						
+						
+						DispatchQueue.global().async {
 							
-							   print("##### Parsing csv in a Synchronous Execution in the background ##### ")
+							print("##### Parsing csv in a Synchronous Execution in the background ##### ")
 							
 							// readFile(filename: f)
 							if let csvFile =  readCSVFile(name: upload.fileName) {
 								parseCSVToClient(csv: csvFile)
 							}
-							
 						}
+						
+							
+						//}
 						
                     } catch {
                         print(error)
@@ -160,6 +165,9 @@ class FileController {
                 }
                 
             }
+		print("########################")
+		print("Finish Parsing file ")
+		print("########################")
         }
         
         
